@@ -17,9 +17,42 @@ app.use(session({
 app.use(flash());
 
 app.get("/", (req, res) => {
-    console.log("está rodando!")
-    res.send("Rodando!")
+    res.render("index")
 })
+
+app.post("/form", (req, res) => {
+
+    let { email, nome, pontos } = req.body;
+    let emailError;
+    let pontosError;
+    let nomeError;
+
+    if (email == undefined || email == "") {
+        // erro na validação!
+        emailError = "Email não informado!";
+    }
+
+    if (pontos == undefined || pontos < 20) {
+        // erro na validação!
+        pontosError = "Pontos não informado ou menor do que 20!";
+    }
+
+    if (nome == undefined || nome == "") {
+        // erro na validação!
+        nomeError = "Nome não pode ser vazio!";
+    }
+
+    if(nome.length < 4 ){
+        nomeError = "Nome deve ter mais que 4 caracteres!";
+    }
+
+    if (emailError != undefined || nomeError != undefined || pontosError != undefined) {
+        res.redirect("/");
+    } else {
+        res.send("Formulário todo ok!!");
+    }
+
+});
 
 app.listen(8080, (req, res) => {
     console.log("Server Running!");
