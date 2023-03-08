@@ -11,9 +11,12 @@
 <body>
     <form method="post" action="/form">
          <!-- Usar o required nesses inputs é uma forma de validar porem é pouco segura, pois qualquer usuário com conhecimentos básicos em desenvolvimento ou área da computação consegue burlar usando o inspecionar e deletando do código do navegador o required do input! -->
-        <input type="email" name="email" id="email" placeholder="email"><br><br>
-        <input type="text" name="nome" id="nome" placeholder="nome"><br><br>
-        <input type="number" name="pontos" id="pontos" placeholder="pontos"><br><br>
+        <input type="email" name="email" id="email" placeholder="email" value="<%= email %>"><br>
+        <%= emailError %><br>
+        <input type="text" name="nome" id="nome" placeholder="nome" value="<%= nome %>"><br>
+        <%= nomeError %> <br>
+        <input type="number" name="pontos" id="pontos" placeholder="pontos" value="<%= pontos %>"><br>
+        <%= pontosError %> <br>
         <button type="submit">Enviar</button>
     </form>
 </body>
